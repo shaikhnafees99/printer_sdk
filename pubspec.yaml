@@ -1,0 +1,23 @@
+name: brother_printer
+description: BRLMPrinterKit Brother's printer SDK
+version: 0.2.0
+homepage: https://github.com/johnvuko/flutter_brother_printer
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: '>=2.0.0'
+  collection: '>=1.0.0'
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: co.eivo.brother_printer
+        pluginClass: BrotherPrinterPlugin
+      ios:
+        pluginClass: BrotherPrinterPlugin
