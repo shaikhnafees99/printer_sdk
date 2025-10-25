@@ -39,7 +39,7 @@ class PrinterErrorException extends Exception {
 
 public class PrinterSession {
 
-    static final String ACTION_USB_PERMISSION = "co.eivo.brother_printer.USB_PERMISSION";
+    private static final String ACTION_USB_PERMISSION = "android.hardware.usb.action.USB_PERMISSION";
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -101,9 +101,9 @@ public class PrinterSession {
                 activity,
                 0,
                 new Intent(ACTION_USB_PERMISSION),
-                PendingIntent.FLAG_MUTABLE // Use this flag for Android 12+
+                PendingIntent.FLAG_IMMUTABLE // Use this flag for Android 12+
             );
-            activity.registerReceiver(mUsbReceiver, new IntentFilter(ACTION_USB_PERMISSION));
+            activity.registerReceiver(mUsbReceiver, new IntentFilter(ACTION_USB_PERMISSION),Context.RECEIVER_NOT_EXPORTED);
             if (!usbManager.hasPermission(usbDevice)) {
                 usbManager.requestPermission(usbDevice, permissionIntent);
             }

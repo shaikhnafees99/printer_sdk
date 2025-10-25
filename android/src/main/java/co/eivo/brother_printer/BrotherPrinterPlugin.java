@@ -42,7 +42,7 @@ public class BrotherPrinterPlugin implements FlutterPlugin, MethodCallHandler, A
   private Activity activity;
   private UsbManager usbManager;
   private UsbDevice usbDevice;
-  private static final String ACTION_USB_PERMISSION= "co.eivo.brother_printer.USB_PERMISSION";
+  private static final String ACTION_USB_PERMISSION= "android.hardware.usb.action.USB_PERMISSION";
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "brother_printer");
@@ -211,8 +211,8 @@ public class BrotherPrinterPlugin implements FlutterPlugin, MethodCallHandler, A
         } else {
             // Request permission
             PendingIntent permissionIntent = PendingIntent.getBroadcast(activity, 0,
-                    new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_MUTABLE);
-            activity.registerReceiver(mUsbReceiver, new IntentFilter(ACTION_USB_PERMISSION));
+                    new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_IMMUTABLE);
+            activity.registerReceiver(mUsbReceiver, new IntentFilter(ACTION_USB_PERMISSION),Context.RECEIVER_NOT_EXPORTED);
             usbManager.requestPermission(usbDevice, permissionIntent);
         }
     }

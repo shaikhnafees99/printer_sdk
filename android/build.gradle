@@ -33,10 +33,10 @@ apply plugin: 'com.android.library'
 android {
     namespace 'co.eivo.brother_printer'
 
-    compileSdkVersion 33
+    compileSdkVersion 35
 
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 24
     }
 }
 
